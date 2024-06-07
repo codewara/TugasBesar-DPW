@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PagesController extends Controller {
+class LogController extends Controller {
     public function home() {
         return view('pages.home');
     }
-    public function access() {
-        return view('pages.access');
+
+    public function admin() {
+        return view('admin.dashboard');
     }
 }

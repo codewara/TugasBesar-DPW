@@ -15,7 +15,7 @@ class CarController extends Controller {
 
     /* ======= Show the forms for creating a new resource ======= */
     public function create() {
-        //
+        return view('pages.create');
     }
     
     /* ======= Store a newly created resources in storage ======= */
@@ -38,7 +38,19 @@ class CarController extends Controller {
         
         $input = $request->all();
         
-        Car::create($input);
+        // Store the photo
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photoName = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->move(public_path('assets/img/cars'), $photoName);
+            $input['photo'] = $photoName;
+            
+            // Store the photo name to database
+            $car = Car::create($input);
+            $car->photo = $photoName;
+            $car->save();
+        }
+        
         Session::flash('flash_message', 'New Car has been added!');
         
         return redirect()->back();
