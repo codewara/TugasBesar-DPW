@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\Car;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +31,29 @@ Route::get('/oqe', function () {
     return view('pages.tesz');
 });
 
+Route::get('/rent', function (Request $request) {
+    $cars = Car::where('availability', 1)->get();
+    $selected = null;
+
+    if ($request->has('id')) {
+        $selected = Car::find($request->id);
+    }
+
+    return view('pages.rent', compact('cars', 'selected'));
+})->middleware(['auth', 'verified', 'admin'])->name('rent');
+
+Route::get('/cars/{id}', function ($id) {
+    $car = Car::findOrFail($id);
+    return response()->json($car);
+});
+
 Route::resource('gallery', CarController::class);
 
 Route::get('/admin', [LogController::class, 'admin']
 )->middleware(['auth', 'verified', 'admin'])->name('admin');
+Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::resource('car', CarController::class);
+});
 
 Route::get('/home', function () {
     return view('pages.home');
@@ -45,7 +66,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/create-transaction', [PaymentController::class, 'createCharge'])->name('createCharge');
-Route::post('/notification-handler', [PaymentController::class, 'notificationHandler']);
-
 
 require __DIR__.'/auth.php';

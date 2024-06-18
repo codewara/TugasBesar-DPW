@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title') Sign up @endsection
+@section('title', 'Sign up')
 
 @section('content')
 <a href="/" class="back d-flex align-items-center">

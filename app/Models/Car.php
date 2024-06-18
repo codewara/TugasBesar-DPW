@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model {
     protected $table = 'carlist';
     protected $fillable = [
-        'VIN', 'make', 'model', 'year', 'class', 'mileage', 'fuel',
-        'ext_color', 'int_color', 'features', 'photo', 'status', 'location',
+        'name', 'brand', 'model', 'year', 'color', 'type', 'seats',
+        'transmission', 'fuel_type', 'price', 'notes', 'photo_url',
     ];
+
+    public function Transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

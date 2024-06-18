@@ -56,31 +56,37 @@
 
         <div class="section-header">
             <h2>Our Collection</h2>
-            <p>Check Our <span>Yummy Menu</span></p>
+            <p>Check Our <span>Car Collection</span></p>
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
             <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
-                <h4>Starters</h4>
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#all">
+                <h4>All</h4>
                 </a>
             </li><!-- End tab nav item -->
 
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
-                <h4>Breakfast</h4>
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#petrol">
+                <h4>Petrol</h4>
                 </a><!-- End tab nav item -->
 
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-lunch">
-                <h4>Lunch</h4>
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#diesel">
+                <h4>Diesel</h4>
                 </a>
             </li><!-- End tab nav item -->
 
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dinner">
-                <h4>Dinner</h4>
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#electric">
+                <h4>Electric</h4>
+                </a>
+            </li><!-- End tab nav item -->
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#hybrid">
+                <h4>Hybrid</h4>
                 </a>
             </li><!-- End tab nav item -->
 
@@ -88,318 +94,128 @@
 
         <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 
-            <div class="tab-pane fade active show" id="menu-starters">
-
+            <div class="tab-pane fade active show" id="all">
+                
                 <div class="tab-header text-center">
-                    <p>Menu</p>
-                    <h3>Starters</h3>
+                    <p>Cars</p>
+                    <h3>All Type</h3>
                 </div>
 
                 <div class="row gy-5">
+
                     @foreach ($cars as $car)
                     <div class="col-lg-4 menu-item">
-                        <a href="assets/img/cars/{{ $car->photo }}" class="glightbox"><img src="assets/img/cars/{{ $car->photo }}" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $5.95
-                        </p>
+                        <a href="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="glightbox d-flex justify-content-center">
+                            <img src="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="menu-img img-fluid" alt="" style="height: 200px; object-fit: contain;">
+                        </a>
+                        <h4>{{ $car->name }}</h4>
+                        <p class="ingredients">{{ $car->notes }}</p>
+                        <p class="price">Rp{{ number_format($car->price) }}</p>
                     </div><!-- Menu Item -->
                     @endforeach
 
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $9.95
-                        </p>
-                    </div><!-- Menu Item -->
-
                 </div>
-            </div><!-- End Starter Menu Content -->
+            </div>
 
-            <div class="tab-pane fade" id="menu-breakfast">
+            <div class="tab-pane fade" id="petrol">
 
                 <div class="tab-header text-center">
-                    <p>Menu</p>
-                    <h3>Breakfast</h3>
+                    <p>Cars</p>
+                    <h3>Petrol Fuel Type</h3>
                 </div>
 
                 <div class="row gy-5">
 
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $5.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $9.95
-                        </p>
-                    </div><!-- Menu Item -->
+                    @foreach ($cars as $car)
+                        @if ($car->fuel_type == 'petrol')
+                        <div class="col-lg-4 menu-item">
+                            <a href="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="glightbox d-flex justify-content-center">
+                                <img src="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="menu-img img-fluid" alt="" style="height: 200px; object-fit: contain;">
+                            </a>
+                            <h4>{{ $car->name }}</h4>
+                            <p class="ingredients">{{ $car->notes }}</p>
+                            <p class="price">Rp{{ number_format($car->price) }}</p>
+                        </div><!-- Menu Item -->
+                        @endif
+                    @endforeach
 
                 </div>
-            </div><!-- End Breakfast Menu Content -->
+            </div>
 
-            <div class="tab-pane fade" id="menu-lunch">
+            <div class="tab-pane fade" id="diesel">
 
                 <div class="tab-header text-center">
-                    <p>Menu</p>
-                    <h3>Lunch</h3>
+                    <p>Cars</p>
+                    <h3>Diesel Fuel Type</h3>
                 </div>
 
                 <div class="row gy-5">
 
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $5.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $9.95
-                        </p>
-                    </div><!-- Menu Item -->
+                    @foreach ($cars as $car)
+                        @if ($car->fuel_type == 'diesel')
+                        <div class="col-lg-4 menu-item">
+                            <a href="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="glightbox d-flex justify-content-center">
+                                <img src="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="menu-img img-fluid" alt="" style="height: 200px; object-fit: contain;">
+                            </a>
+                            <h4>{{ $car->name }}</h4>
+                            <p class="ingredients">{{ $car->notes }}</p>
+                            <p class="price">Rp{{ number_format($car->price) }}</p>
+                        </div><!-- Menu Item -->
+                        @endif
+                    @endforeach
 
                 </div>
-            </div><!-- End Lunch Menu Content -->
+            </div>
 
-            <div class="tab-pane fade" id="menu-dinner">
+            <div class="tab-pane fade" id="electric">
 
                 <div class="tab-header text-center">
-                    <p>Menu</p>
-                    <h3>Dinner</h3>
+                    <p>Cars</p>
+                    <h3>Electric Fuel Type</h3>
                 </div>
 
                 <div class="row gy-5">
 
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $5.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $9.95
-                        </p>
-                    </div><!-- Menu Item -->
+                    @foreach ($cars as $car)
+                        @if ($car->fuel_type == 'electric')
+                        <div class="col-lg-4 menu-item">
+                            <a href="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="glightbox d-flex justify-content-center">
+                                <img src="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="menu-img img-fluid" alt="" style="height: 200px; object-fit: contain;">
+                            </a>
+                            <h4>{{ $car->name }}</h4>
+                            <p class="ingredients">{{ $car->notes }}</p>
+                            <p class="price">Rp{{ number_format($car->price) }}</p>
+                        </div><!-- Menu Item -->
+                        @endif
+                    @endforeach
 
                 </div>
-            </div><!-- End Dinner Menu Content -->
+            </div>
+
+            <div class="tab-pane fade" id="hybrid">
+
+                <div class="tab-header text-center">
+                    <p>Cars</p>
+                    <h3>Hybrid Fuel Type</h3>
+                </div>
+
+                <div class="row gy-5">
+
+                    @foreach ($cars as $car)
+                        @if ($car->fuel_type == 'hybrid')
+                        <div class="col-lg-4 menu-item">
+                            <a href="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="glightbox d-flex justify-content-center">
+                                <img src="{{ asset('assets/img/cars/'. ($car->photo_url ? $car->photo_url : 'default.png')) }}" class="menu-img img-fluid" alt="" style="height: 200px; object-fit: contain;">
+                            </a>
+                            <h4>{{ $car->name }}</h4>
+                            <p class="ingredients">{{ $car->notes }}</p>
+                            <p class="price">Rp{{ number_format($car->price) }}</p>
+                        </div><!-- Menu Item -->
+                        @endif
+                    @endforeach
+
+                </div>
+            </div>
 
         </div>
 

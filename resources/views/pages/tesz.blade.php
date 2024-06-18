@@ -11,7 +11,7 @@
         <input type="text" id="amount" name="amount"><br>
         
         <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name"><br>
+        <input type="text" id="name" name="name"><br>
         
         <label for="last_name">Last Name:</label><br>
         <input type="text" id="last_name" name="last_name"><br>

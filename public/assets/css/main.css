@@ -190,7 +190,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Back button
+# Responsive buttons
 --------------------------------------------------------------*/
 .back {
   position: fixed;
@@ -235,6 +235,38 @@ section {
 
 .back:hover span {
   transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+}
+
+.dotbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  transition: 0.3s;
+  transition-delay: 0.2s;
+}
+
+.dotbtn span {
+  display: block;
+  position: relative;
+  visibility: hidden;
+  font-size: 15px;
+  opacity: 0;
+  transition: 0.3s;
+  transition-delay: 0.2s;
+}
+
+.dotbtn:hover {
+  height: 30px;
+  width: 70px;
+  padding: 0.5rem;
+}
+
+.dotbtn:hover span {
   visibility: visible;
   opacity: 1;
 }
@@ -672,42 +704,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Stats Counter Section
---------------------------------------------------------------*/
-.stats-counter {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/stats-bg.jpg") center center;
-  background-size: cover;
-  padding: 100px 0;
-}
-
-@media (min-width: 1365px) {
-  .stats-counter {
-    background-attachment: fixed;
-  }
-}
-
-.stats-counter .stats-item {
-  padding: 30px;
-  width: 100%;
-}
-
-.stats-counter .stats-item span {
-  font-size: 48px;
-  display: block;
-  color: #fff;
-  font-weight: 700;
-}
-
-.stats-counter .stats-item p {
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-secondary);
-  font-size: 16px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/*--------------------------------------------------------------
 # Menu Section
 --------------------------------------------------------------*/
 .menu .nav-tabs {
@@ -989,27 +985,21 @@ section {
   }
 }
 
-.book-a-table .php-email-form h3 {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
 .book-a-table .php-email-form h4 {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 20px 0 0 0;
+  margin: 25px 0;
 }
 
 .book-a-table .php-email-form p {
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .book-a-table .php-email-form input,
+.book-a-table .php-email-form select,
 .book-a-table .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
@@ -1018,16 +1008,19 @@ section {
 }
 
 .book-a-table .php-email-form input:focus,
+.book-a-table .php-email-form select:focus,
 .book-a-table .php-email-form textarea:focus {
   border-color: var(--color-primary);
 }
 
-.book-a-table .php-email-form input {
+.book-a-table .php-email-form input,
+.book-a-table .php-email-form select,
+.book-a-table .php-email-form textarea {
   padding: 12px 15px;
 }
 
-.book-a-table .php-email-form textarea {
-  padding: 12px 15px;
+.book-a-table .php-email-form input[type=checkbox] {
+  padding: 10px 10px;
 }
 
 .book-a-table .php-email-form button[type=submit] {
@@ -1082,6 +1075,26 @@ section {
     z-index: 1;
     transform: scale(1.2);
   }
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.tables .tab-header {
+  padding: 30px 0;
+}
+
+.tables .tab-header p {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #676775;
+  margin-bottom: 0;
+}
+
+.tables .tab-header h3 {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--color-primary);
 }
 
 /*--------------------------------------------------------------
@@ -1153,6 +1166,7 @@ section {
 }
 
 .contact .php-email-form input:focus,
+.contact .php-email-form select:focus,
 .contact .php-email-form textarea:focus {
   border-color: var(--color-primary);
 }

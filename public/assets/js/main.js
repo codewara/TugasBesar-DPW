@@ -231,12 +231,4 @@
     window.addEventListener('load', () => {
         aos_init();
     })
-
-    document.getElementById('pay-button').onclick = function(){
-        snap.pay('{{$snapToken}}', {
-          onSuccess: function(result){ /* Handle success */ },
-          onPending: function(result){ /* Handle pending */ },
-          onError: function(result){ /* Handle error */ }
-        });
-      };
 })();

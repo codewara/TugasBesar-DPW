@@ -12,67 +12,93 @@ class CarController extends Controller {
         return view('pages.gallery')->with('cars', $cars);
     }
     
-
-    /* ======= Show the forms for creating a new resource ======= */
-    public function create() {
-        return view('pages.create');
-    }
-    
     /* ======= Store a newly created resources in storage ======= */
     public function store(Request $request) {
-        $this->validate($request, [
-            'VIN' => 'required',
-            'make' => 'required',
-            'model' => 'required',
-            'year' => 'required',
-            'class' => 'required',
-            'mileage' => 'required',
-            'fuel' => 'required',
-            'ext_color' => 'required',
-            'int_color' => 'nullable',
-            'features' => 'nullable',
-            'photo' => 'required',
-            'status' => 'required',
-            'location' => 'required',
+        // Validate incoming request
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'brand' => 'required|string',
+            'model' => 'required|string',
+            'year' => 'required|integer|min:1900|max:'.date('Y'),
+            'color' => 'required|string',
+            'type' => 'required|in:sedan,suv,hatchback,mpv,truck,van,coupe,convertible',
+            'seats' => 'required|integer|min:1',
+            'transmission' => 'required|in:manual,automatic',
+            'fuel_type' => 'required|in:petrol,diesel,electric,hybrid',
+            'price' => 'required|numeric|min:0',
+            'notes' => 'nullable|string',
+            'photo_url' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        
-        $input = $request->all();
-        
-        // Store the photo
-        if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
+    
+        // Handle file upload if 'photo_url' exists in the request
+        if ($request->hasFile('photo_url')) {
+            $photo = $request->file('photo_url');
             $photoName = time() . '.' . $photo->getClientOriginalExtension();
             $photo->move(public_path('assets/img/cars'), $photoName);
-            $input['photo'] = $photoName;
-            
-            // Store the photo name to database
-            $car = Car::create($input);
-            $car->photo = $photoName;
-            $car->save();
+            $validated['photo_url'] = $photoName;
         }
-        
+    
+        // Create a new Car instance and store it in the database
+        $car = Car::create($validated);
+    
+        // Flash a success message to the session
         Session::flash('flash_message', 'New Car has been added!');
-        
+    
+        // Redirect back to the form page
         return redirect()->back();
-    }
-    
-    /* ============= Display the specified resource ============= */
-    public function show(string $id) {
-        //
-    }
-    
-    /* ==== Show the form for editing the specified resource ==== */
-    public function edit(string $id) {
-        //
     }
     
     /* ======== Update the specified resource in storage ======== */
     public function update(Request $request, string $id) {
-        //
+        // Find the car by its ID
+        $car = Car::findOrFail($id);
+
+        // Validate incoming request
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'brand' => 'required|string',
+            'model' => 'required|string',
+            'year' => 'required|integer|min:1900|max:'.date('Y'),
+            'color' => 'required|string',
+            'type' => 'required|in:sedan,suv,hatchback,mpv,truck,van,coupe,convertible',
+            'seats' => 'required|integer|min:1',
+            'transmission' => 'required|in:manual,automatic',
+            'fuel_type' => 'required|in:petrol,diesel,electric,hybrid',
+            'price' => 'required|numeric|min:0',
+            'notes' => 'nullable|string',
+            'photo_url' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Handle file upload if 'photo_url' exists in the request
+        if ($request->hasFile('photo_url')) {
+            $photo = $request->file('photo_url');
+            $photoName = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->move(public_path('assets/img/cars'), $photoName);
+            $validated['photo_url'] = $photoName;
+        }
+
+        // Update the car with the validated data
+        $car->update($validated);
+
+        // Flash a success message to the session
+        Session::flash('flash_message', 'Car has been updated!');
+
+        // Redirect back to the form page
+        return redirect()->back();
     }
     
     /* ======= Remove the specified resource from storage ======= */
     public function destroy(string $id) {
-        //
+        // Find the car by its ID
+        $car = Car::findOrFail($id);
+        
+        // Delete the car from the database
+        $car->delete();
+        
+        // Flash a success message to the session
+        Session::flash('flash_message', 'Car has been deleted!');
+        
+        // Redirect back to the form page
+        return redirect()->back();
     }
 }

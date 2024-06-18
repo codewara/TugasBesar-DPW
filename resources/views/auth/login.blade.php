@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title') Sign in @endsection
+@section('title', 'Sign in')
 
 @section('content')
 <!-- Session Status -->
