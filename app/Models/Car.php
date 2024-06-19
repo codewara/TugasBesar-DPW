@@ -12,7 +12,7 @@ class Car extends Model {
         'transmission', 'fuel_type', 'price', 'notes', 'photo_url',
     ];
 
-    public function Transactions()
+    public function transactions()
     {
         return $this->hasMany(Transaction::class);
     }

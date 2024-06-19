@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('#total').hide();
     $('#driver').hide();
     $('#duration').hide();
@@ -37,17 +37,17 @@ $(document).ready(function() {
                 $('#duration').slideDown();
                 $('#field_duration b').html(days + ' day' + (days > 1 ? 's' : ''));
             }
-    
+
         }
         updateTotal();
     }
-    
-    $('#car_id').change(function() {
+
+    $('#car_id').on('change', function () {
         $('#total').slideDown();
         $.ajax({
             url: '/cars/' + $(this).val(),
             type: 'GET',
-            success: function(data) {
+            success: function (data) {
                 $('#image').css({
                     'background-image': 'url(/assets/img/cars/' + data.photo_url + ')',
                     'background-size': 'contain',
@@ -57,13 +57,13 @@ $(document).ready(function() {
 
                 price = parseInt(data.price);
                 $('#total').slideDown();
-                $('#field_price b').html('Rp'+ Number(price).toLocaleString() + ' /day');
+                $('#field_price b').html('Rp' + Number(price).toLocaleString() + ' /day');
                 calculateDays();
             }
         });
     });
 
-    $('#include_driver').change(function() {
+    $('#include_driver').on('change', function () {
         if ($(this).is(':checked')) {
             $('#driver').slideDown();
         } else {
@@ -73,15 +73,11 @@ $(document).ready(function() {
     });
 
     // Recalculate days and total price on date changes
-    $('#start_date, #end_date').change(function() {
+    $('#start_date, #end_date').on('change', function () {
+        price = parseInt($('#field_price b').html().replace(/[^0-9]/g, ''));
         if ($('#start_date').val() && $('#end_date').val()) {
             $('#pricetotal').slideDown();
         }
         calculateDays(); // Recalculate days and update total
-    });
-
-    $('form').on('submit', function(e) {
-        e.preventDefault(); // Comment this out if present
-        // Any custom logic
     });
 });

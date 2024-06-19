@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\Car;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\LogController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +17,10 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('pages.home');
-});
-
-Route::get('/iyah', function () {
-    return view('pages.tes');
-});
-
-Route::get('/oqe', function () {
-    return view('pages.tesz');
 });
 
 Route::get('/rent', function (Request $request) {
@@ -40,7 +32,7 @@ Route::get('/rent', function (Request $request) {
     }
 
     return view('pages.rent', compact('cars', 'selected'));
-})->middleware(['auth', 'verified', 'admin'])->name('rent');
+})->middleware(['auth', 'verified'])->name('rent');
 
 Route::get('/cars/{id}', function ($id) {
     $car = Car::findOrFail($id);
@@ -65,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/create-transaction', [PaymentController::class, 'createCharge'])->name('createCharge');
+Route::post('/createInvoice', [PaymentController::class, 'createCharge'])->name('createCharge');
+Route::get('/invoice/{id}', [PaymentController::class, 'viewInvoice'])->name('viewInvoice');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
